@@ -1,0 +1,14 @@
+
+uib-accordion .panel-default .panel-heading {
+  background-color: #34495E;
+  padding: 0;
+}
+
+uib-accordion .accordion-title {
+  color: #FFF;
+  display: block;
+  font-weight: 700;
+  padding: 1.5em;
+  text-align: center;
+  text-decoration: none;
+}

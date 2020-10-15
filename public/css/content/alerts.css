@@ -1,0 +1,14 @@
+.alerts .alert-1 h4 {
+  color: #C12030;
+  text-shadow: 1px 1px 1px #777777;
+}
+
+.alerts .alert-2 h4{
+  color: #FBEB33;
+  text-shadow: 1px 1px 1px #777777;
+}
+
+.alerts .alert-3 h4{
+  color: #049246;
+  text-shadow: 1px 1px 1px #777777;
+}

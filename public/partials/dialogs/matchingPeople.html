@@ -1,0 +1,58 @@
+<div class="modal-header">
+	<button class="close" data-ng-click="cancel()">&times;</button>
+	<h4 class="modal-title">Coincidencias En Familiares</h4>
+</div>
+<div class="modal-body">
+	<div class="persons-list-match">
+		<div class="row"  data-ng-repeat="p in people | orderBy:'-weightNumber' track by $index">
+			<div id="box" class="col-md-12 {{calculateClass(p)}}">
+				<div class="media">
+					<div class="media-left">
+						<img class="media-object" data-ng-src="{{getPhoto(p)}}" alt="Foto">
+					</div>
+					<div class="media-body">
+						<div class="row row-title">
+							<div class="col-md-12">
+								<h4 class="media-heading">
+									<span class="pull-left">
+										{{p.surnames}} {{p.names}} <small>({{p.weight}}% de coincidencia)</small>
+									</span>
+									<span class="pull-right">
+										<a type="button" class="btn btn-primary btn-sm" data-ng-click="selected($index)">
+											Elegir <i class="glyphicon glyphicon-share-alt"></i>
+										</a>
+									</span>
+								</h4>
+							</div>
+						</div>
+						<hr>
+						<div class="row">
+							<div class="col-md-5 col-md-offset-1" data-ng-show="p.document_number">
+								<strong>Documento</strong>{{p.document_type ? p.document_type + ':' : ''}} {{p.document_number}}
+							</div>
+							<div class="col-md-5 col-md-offset-1" data-ng-show="p.birthdate">
+								<strong>Fecha de nacimiento</strong>{{p.birthdate | date:'dd-MM-yyyy'}}
+							</div>
+							<div class="col-md-5 col-md-offset-1" data-ng-show="p.gender">
+								<strong>Genero</strong>{{p.gender}}
+							</div>
+							<div class="col-md-5 col-md-offset-1" data-ng-show="p.nationality">
+								<strong>Nacionalidad</strong>{{p.nationality}}
+							</div>
+						</div>
+						<div class="row" data-ng-show="getAddress(p)">
+							<div class="col-md-11 col-md-offset-1">
+								<strong>Domicilio</strong>{{getAddress(p)}}
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="modal-footer">
+		<div class="col-md-12">
+			<br>
+			<button class="btn btn-primary pull-right" data-ng-click="noneSelected()"> No esta en la lista </button>
+		</div>
+	</div>

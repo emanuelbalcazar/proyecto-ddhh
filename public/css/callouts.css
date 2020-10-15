@@ -1,0 +1,114 @@
+.bs-callout {
+  padding: 20px;
+  border: 1px solid #EEEEEE;
+  border-left-width: 15px;
+  border-radius: 3px;
+}
+
+.bs-callout h4 {
+  margin-top: 0;
+  margin-bottom: 5px;
+  text-shadow: 1px 1px 1px #777777;
+}
+
+.bs-callout p:last-child {
+  margin-bottom: 0;
+}
+
+.bs-callout code {
+  border-radius: 3px;
+}
+
+.bs-callout+.bs-callout {
+  margin-top: -5px;
+}
+
+/* INICIO DE COLORES DE CALLOUT */
+
+.bs-callout-warning-1 {
+  border-left-color: #C12030
+}
+
+.bs-callout-warning-1 h4 {
+  color: #C12030
+}
+
+.bs-callout-warning-2 {
+  border-left-color: #EF4138
+}
+
+.bs-callout-warning-2 h4 {
+  color: #EF4138
+}
+
+.bs-callout-warning-3 {
+  border-left-color: #F15B29
+}
+
+.bs-callout-warning-3 h4 {
+  color: #F15B29
+}
+
+.bs-callout-warning-4 {
+  border-left-color: #F7941F
+}
+
+.bs-callout-warning-4 h4 {
+  color: #F7941F
+}
+
+.bs-callout-warning-5 {
+  border-left-color: #FBAF41
+}
+
+.bs-callout-warning-5 h4 {
+  color: #FBAF41
+}
+
+.bs-callout-warning-6 {
+  border-left-color: #FBEB33
+}
+
+.bs-callout-warning-6 h4 {
+  color: #FBEB33
+}
+
+.bs-callout-warning-7 {
+  border-left-color: #D5DD25
+}
+
+.bs-callout-warning-7 h4 {
+  color: #D5DD25
+}
+
+.bs-callout-warning-8 {
+  border-left-color: #8DC540
+}
+
+.bs-callout-warning-8 h4 {
+  color: #8DC540
+}
+
+.bs-callout-warning-9 {
+  border-left-color: #39B44A
+}
+
+.bs-callout-warning-9 h4 {
+  color: #39B44A
+}
+
+.bs-callout-warning-10 {
+  border-left-color: #049246
+}
+
+.bs-callout-warning-10 h4 {
+  color: #049246
+}
+
+.bs-callout-warning-11 {
+  border-left-color: #056839
+}
+
+.bs-callout-warning-11 h4 {
+  color: #056839
+}

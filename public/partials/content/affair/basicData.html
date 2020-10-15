@@ -1,0 +1,89 @@
+<div class="buttons-bar palette-clouds">
+  <default-buttons></default-buttons>
+  <button class="btn btn-primary" data-ng-click="checkMatchingPeople()">Siguiente <i class="glyphicon glyphicon-arrow-right"></i></button>
+</div>
+<div class="row">
+  <div class="col-md-5 col-md-offset-1">
+    <div class="row">
+      <div class="col-md-12">
+        <label for="nombre">Nombre</label>
+        <input id="nombre" type="text" class="form-control text-capitalize" placeholder="Nombre" data-ng-model="filters.personNames">
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-12">
+        <label for="apellido">Apellido</label>
+        <input id="apellido" type="text" class="form-control text-capitalize" placeholder="Apellido" data-ng-model="filters.personSurnames">
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-12">
+        <label for="birthdate">Fecha de nacimiento</label>
+        <div class="row">
+          <div class="col-md-3" data-ng-class="{'has-error': birthdateDayValidator()}">
+            <input id="birthdateDay" class="form-control" placeholder="dd" data-ng-model="filters.personBirthdateDay" data-toggle="tooltip" title="Día" flat-tooltip>
+          </div>
+          <div class="col-md-3" data-ng-class="{'has-error': birthdateMonthValidator()}">
+            <input id="birthdateMonth" class="form-control" placeholder="MM" data-ng-model="filters.personBirthdateMonth" data-toggle="tooltip" title="Mes" flat-tooltip>
+          </div>
+          <div class="col-md-6" data-ng-class="{'has-error': birthdateYearValidator() || wrongYear}">
+            <input id="birthdateYear" class="form-control" placeholder="aaaa" data-ng-model="filters.personBirthdateYear" data-ng-blur="birthdateYearValidatorOnBlur()" data-toggle="tooltip" title="Año" flat-tooltip>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-12">
+        <label for="documentNumber">Documento</label>
+        <input id="documentNumber" class="form-control" placeholder="Documento" data-ng-model="filters.documentNumber">
+      </div>
+    </div>
+  </div>
+  <div class="col-md-4 col-md-offset-1">
+    <div class="row">
+      <div class="col-md-12">
+        <label for="case-date">Fecha de desaparición o hallazgo</label>
+        <p class="input-group">
+          <input id="case-date" type="text" placeholder="Fecha de desaparición o hallazgo" class="form-control" is-open="affairDataDatepicker.status" uib-datepicker-popup="dd/MM/yyyy" data-ng-model="person.date" show-button-bar="false" datepicker-options="dateOptions" popup-placement="bottom-right" alt-input-formats="['d!/M!/yyyy', 'd!-M!-yyyy']" />
+          <span class="input-group-btn">
+            <button type="button" class="btn btn-default" data-ng-click="openAffairDataDatepicker()"><i class="glyphicon glyphicon-calendar"></i></button>
+          </span>
+        </p>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-12">
+        <label for="case-type">Tipo de caso</label>
+        <select id="case-type" class="form-control" data-ng-model="person.type">
+          <option data-ng-repeat="type in caseTypes" value="{{type}}">{{type}}</option>
+        </select>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-12">
+        <label for="case-status">Estado</label>
+        <select id="case-status"class="form-control" data-ng-model="person.status">
+          <option data-ng-repeat="s in caseStatus" value="{{s}}">{{s}}</option>
+        </select>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-12">
+        <label for="case-age-fact">Edad al momento del hecho</label>
+        <input id="case-age-fact" type="number" min="0" class="form-control" placeholder="Edad al momento del hecho" data-ng-model="person.age_fact">
+      </div>
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-10 col-md-offset-1">
+    <label for="place">Lugar del hecho</label>
+    <input id="place" type="text" class="form-control" placeholder="Lugar del hecho" data-ng-model="person.place" data-toggle="tooltip" title="Lugar de desaparición / hallazgo" flat-tooltip>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-10 col-md-offset-1">
+    <label for="case-reason">Causa</label>
+    <textarea id="case-reason" class="form-control" rows="3" data-ng-model="person.reason" placeholder="Causa"></textarea>
+  </div>
+</div>

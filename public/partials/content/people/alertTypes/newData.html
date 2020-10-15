@@ -1,0 +1,47 @@
+
+<div id="box" class="col-md-12 {{calculateClass(a)}}" data-ng-controller="NewDataCtrl">
+  <div class="media">
+    <div class="media-body">
+      <div class="row row-title">
+        <div class="col-md-12">
+          <h4 class="media-heading">
+            <span class="pull-left">
+              {{a.type}}
+            </span>
+            <span class="pull-right" data-ng-show="a.state == 'Aceptada'">
+              <i class="fa fa-check"></i> Aceptada
+            </span>
+            <span class="pull-right" data-ng-show="a.state == 'Rechazada'">
+              <i class="fa fa-times"></i> Rechazada
+            </span>
+            <span class="pull-right" data-ng-show="a.state == 'Pendiente'">
+              <button type="button" name="buttonAcept" class="btn btn-sm btn-primary alerts-button" data-ng-click="accept(a)" data-toggle="tooltip" title="Haga click para Aceptar Dato" flat-tooltip>
+                <i class="fa fa-check"></i> Aceptar
+              </button>
+              <button type="button" name="buttonCancel" class="btn btn-sm btn-primary alerts-button" data-ng-click="reject(a)" data-toggle="tooltip" title="Haga click para Cancelar Dato" flat-tooltip>
+                <i class="fa fa-times"></i> Rechazar
+              </button>
+              <button type="button" name="buttonOmit" class="btn btn-sm btn-primary alerts-button" data-ng-click="ignore(a)" data-toggle="tooltip" title="Haga click para Omitir Dato" flat-tooltip>
+                <i class="fa fa-minus"></i> Omitir
+              </button>
+            </span>
+          </h4>
+        </div>
+      </div>
+      <hr>
+      <div class="row">
+        <div class="col-md-12">
+          <div class="alert alert-new-data">
+            En el campo <strong>{{a.field_translate}}</strong>se ingreso el dato <strong>{{a.new_data}}</strong>
+          </div>
+        </div>
+      </div>
+      <div class="row" data-ng-show="a.state == 'Pendiente'">
+        <div class="col-md-12">
+          <label for="observations">Observaciones</label>
+          <textarea id="observations" rows="3" class="form-control" data-ng-model="a.observations" placeholder="Observaciones"></textarea>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,123 @@
+<div class="row">
+  <div class="col-md-6">
+    <div class="row">
+      <div class="col-md-12">
+        <label for="nombre">Nombre</label>
+        <input id="nombre" type="text" placeholder="Nombre" uib-typeahead="curr.name for curr in getNames($viewValue)" typeahead-min-length="3" data-ng-model="person.names" class="form-control tt-input text-capitalize">
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-12">
+        <label for="apellido">Apellido</label>
+        <input id="apellido" type="text" placeholder="Apellido" uib-typeahead="curr.surname for curr in getSurnames($viewValue)" typeahead-min-length="3" data-ng-model="person.surnames" class="form-control tt-input text-capitalize">
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-12">
+        <label for="personBirthdate">Fecha de Nacimiento</label>
+        <p class="input-group">
+          <input id="personBirthdate" type="text" class="form-control" is-open="generalDataDatepicker.status" uib-datepicker-popup="dd/MM/yyyy" data-ng-model="person.birthdate" show-button-bar="false" datepicker-options="dateOptions" popup-placement="bottom-right" alt-input-formats="['d!/M!/yyyy', 'd!-M!-yyyy']" placeholder="Fecha de Nacimiento" data-toggle="tooltip" title="Fecha de nacimiento en formato dd/MM/aaaa" flat-tooltip>
+          <span class="input-group-btn">
+            <button type="button" class="btn btn-default" ng-click="openGeneralDataDatepicker()"><i class="glyphicon glyphicon-calendar"></i></button>
+          </span>
+        </p>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-12">
+        <label for="gender">Género</label>
+        <select id="gender" data-ng-model="person.gender" class="form-control" ng-init="person.gender=genders[0]">
+          <option data-ng-repeat="gender in genders" value="{{gender}}">{{gender}}</option>
+        </select>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-12">
+        <label for="nationality">Nacionalidad</label>
+        <input id="nationality" type="text" placeholder="Nacionalidad" data-ng-model="person.nationality" uib-typeahead="curr.name for curr in getCountries($viewValue)" typeahead-min-length="3" class="form-control tt-input text-capitalize" data-toggle="tooltip" title="País de orígen" flat-tooltip>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-4">
+        <label for="documentType">Documento</label>
+        <select id="documentType" data-ng-model="person.document_type_id" class="form-control">
+          <option data-ng-repeat="type in documentTypes" value="{{type.id}}">{{type.name}}</option>
+        </select>
+      </div>
+      <div class="col-md-8">
+        <label for="number">Número</label>
+        <input id="number" type="text" class="form-control" placeholder="Número" data-ng-model="person.document_number" data-toggle="tooltip" title="Número de documento" flat-tooltip>
+      </div>
+    </div>
+    <div class="row" data-ng-show="picFile">
+      <div class="col-md-12">
+        <label for="observations">Observaciones</label>
+        <textarea id="observations" rows="3" class="form-control" placeholder="Observaciones" data-ng-model="person.observations"/>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-6">
+    <br>
+    <div class="row">
+      <div class="col-md-10 col-md-offset-1">
+        <div data-ng-hide="picFile" ngf-drop ngf-select data-ng-model="picFile" class="drop-box"
+          ngf-drag-over-class="'dragover'" ngf-multiple="false" ngf-allow-dir="false"
+          accept="image/*" ngf-pattern="'image/*'">
+            <div class="drop-box-content" data-toggle="tooltip" title="Agregar fotografías" flat-tooltip>
+              Arrastre imágenes aqui o haga click para subirlas
+            </div>
+        </div>
+        <div ngf-no-file-drop>
+          Arrastrar y soltar imágenes no es soportado por este navegador
+          <br>
+          <button class="btn btn-primary" ngf-select ng-model="picFile" ngf-capture="'other'" accept="image/*">
+            Seleccionar imágen
+          </button>
+        </div>
+      </div>
+      <div data-ng-show="picFile" class="col-md-12">
+        <div class="row">
+          <div class="col-md-12">
+            <img class="pull-left cropped-result" data-ng-src="{{person.photo}}"/>
+             <div class="pull-right">
+              <button class="btn btn-danger" data-ng-click="picFile=null;person.photo=null"><i class="glyphicon glyphicon-remove"></i> Descartar</button>
+            </div>
+          </div>
+        </div>
+        <div ngf-drop data-ng-model="picFile" ngf-pattern="image/*" class="cropArea">
+          <img-crop image="picFile | ngfDataUrl" result-image="person.photo" data-ng-init="person.photo=''"></img-crop>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-6">
+    <label for="town">Localidad</label>
+    <input id="town" type="text" data-ng-model="person.address_town_name" uib-typeahead="curr.name for curr in getTowns($viewValue)" typeahead-min-length="3" class="form-control tt-input text-capitalize" placeholder="Localidad" data-toggle="tooltip" title="Localidad de residencia actual" flat-tooltip>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-4">
+    <label for="street">Calle</label>
+    <input id="street" type="text" class="form-control text-capitalize" placeholder="Calle" data-ng-model="person.address_street" data-toggle="tooltip" title="Nombre de calle del domicilio actual" flat-tooltip>
+  </div>
+  <div class="col-md-4">
+    <label for="number">Número</label>
+    <input id="number" type="text" class="form-control text-capitalize" placeholder="Número" data-ng-model="person.address_number" data-toggle="tooltip" title="Número de casa/lote" flat-tooltip>
+  </div>
+  <div class="col-md-2">
+    <label for="floor">Piso</label>
+    <input id="floor" type="text" class="form-control text-capitalize" placeholder="Piso" data-ng-model="person.address_floor" data-toggle="tooltip" title="Número de piso" flat-tooltip>
+  </div>
+  <div class="col-md-2">
+    <label for="dpto">Dpto.</label>
+    <input id="dpto" type="text" class="form-control text-capitalize" placeholder="Dpto." data-ng-model="person.address_dept" data-toggle="tooltip" title="Identificador de departamento" flat-tooltip>
+  </div>
+</div>
+<div class="row" data-ng-hide="picFile">
+  <div class="col-md-12">
+    <label for="observations">Observaciones</label>
+    <textarea id="observations" rows="3" class="form-control" placeholder="Observaciones" data-ng-model="person.observations" data-toggle="tooltip" title="Datos adicionales" flat-tooltip></textarea>
+  </div>
+</div>

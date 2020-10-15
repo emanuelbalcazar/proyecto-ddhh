@@ -1,0 +1,82 @@
+<div id="box" class="col-md-12 {{calculateClass(a)}}" data-ng-controller="InsufficientDataCtrl">
+  <div class="media">
+    <div class="media-body">
+      <div class="row row-title">
+        <div class="col-md-12">
+          <h4 class="media-heading">
+            <span class="pull-left">
+              {{a.type}}
+            </span>
+            <span class="pull-right" data-ng-show="a.state == 'Aceptada'">
+              <i class="fa fa-check"></i> Aceptada
+            </span>
+            <span class="pull-right" data-ng-show="a.state == 'Rechazada'">
+              <i class="fa fa-times"></i> Rechazada
+            </span>
+            <span class="pull-right" data-ng-show="a.state == 'Pendiente'">
+              <button type="button" name="buttonAcept" class="btn btn-sm btn-primary alerts-button" data-ng-click="accept(a)" data-toggle="tooltip" title="Haga click para Aceptar Dato" flat-tooltip>
+                <i class="fa fa-check"></i> Aceptar
+              </button>
+              <button type="button" name="buttonCancel" class="btn btn-sm btn-primary alerts-button" data-ng-click="reject(a)" data-toggle="tooltip" title="Haga click para Cancelar Dato" flat-tooltip>
+                <i class="fa fa-times"></i> Rechazar
+              </button>
+              <button type="button" name="buttonOmit" class="btn btn-sm btn-primary alerts-button" data-ng-click="ignore(a)" data-toggle="tooltip" title="Haga click para Omitir Dato" flat-tooltip>
+                <i class="fa fa-minus"></i> Omitir
+              </button>
+            </span>
+          </h4>
+        </div>
+      </div>
+      <hr>
+      <div class="row">
+        <div class="col-md-12 col-md-offset-1" data-ng-show="a.description">
+          <strong>Descripcion </strong>{{a.description}}
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12 col-md-offset-1" data-ng-show="a.field_translate">
+          <strong>Campo </strong>{{a.field_translate}}
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-6 col-md-offset-1" data-ng-switch="a.field">
+          <div data-ng-switch-when="birthdate">
+            <p class="input-group">
+              <div class="row" data-ng-show="a.state == 'Pendiente'">
+                <span class="input-group-btn">
+                  <input id="personBirthdate" type="text" class="form-control" is-open="alertListDatepicker.status" uib-datepicker-popup="dd/MM/yyyy" data-ng-model="a.new_data" show-button-bar="false" datepicker-options="dateOptions" popup-placement="bottom-right" alt-input-formats="['d!/M!/yyyy', 'd!-M!-yyyy']" placeholder="Fecha de Nacimiento" data-toggle="tooltip" title="Fecha de nacimiento en formato dd/MM/aaaa" flat-tooltip>
+                  <button type="button" class="btn btn-default" ng-click="openAlertListDatepicker()"><i class="glyphicon glyphicon-calendar"></i></button>
+                </span>
+              </div>
+              <div class="row" data-ng-show="a.state == 'Aceptada'">
+                Se ingreso el dato <strong>{{a.new_data}}</strong>
+              </div>
+            </p>
+          </div>
+          <div data-ng-switch-when="document_type">
+            <p class="input-group">
+              <div class="row" data-ng-show="a.state == 'Pendiente'">
+                <select id="documentType" data-ng-model="a.new_data" class="form-control">
+                  <option data-ng-repeat="type in documentTypes" value="{{type.name}}">{{type.name}}</option>
+                </select>
+              </div>
+              <div class="row" data-ng-show="a.state == 'Aceptada'">
+                Se ingreso el dato <strong>{{a.new_data}}</strong>
+              </div>
+            </p>
+          </div>
+          <div data-ng-switch-default>
+            <div class="row" data-ng-show="a.state == 'Pendiente'">
+              <input id="dato" type="text" class="form-control text-capitalize" data-ng-model="a.new_data" placeholder="Nuevo Dato">
+            </div>
+            <div class="row" data-ng-show="a.state == 'Aceptada'">
+              <div class="alert alert-new-data">
+                Se ingreso el dato <strong>{{a.new_data}}</strong>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

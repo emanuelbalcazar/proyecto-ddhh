@@ -1,0 +1,21 @@
+.totop a:hover {
+	text-decoration: none;
+	background-color: #34495E !important;
+}
+
+.totop {
+	position: fixed;
+	z-index: 104400;
+	bottom: 0;
+	right: 0;
+}
+
+.totop a, .totop a:visited {
+	color: #1ABC9C !important;
+	background-color: #34495E !important;
+	text-align: center;
+	line-height: 30px;
+	display: block;
+	height: 30px;
+	width: 30px;
+}

@@ -1,0 +1,116 @@
+<div class="table-responsive">
+  <div data-ng-hide="person.family_members.length" class="alert alert-info" role="alert">No hay parientes cargados.</div>
+  <table data-ng-show="person.family_members.length" class="table table-striped table-hover">
+    <thead>
+      <tr>
+      <th>Nombre</th>
+      <th>Apellido</th>
+      <th>Parentesco</th>
+      <th>Querellante</th>
+      <th></th>
+    </tr>
+  </thead>
+    <tbody>
+      <tr data-ng-repeat="p in person.family_members track by $index">
+        <td>{{p.names}}</td>
+        <td>{{p.surnames}}</td>
+        <td>{{findKinshipsById(p.family_groups_types_id)}}</td>
+        <td>{{a.complainant ? 'Si' : 'No'}}</td>
+        <td>
+          <a href="" data-ng-click="removeFamilyMember($index)" class="pull-right" data-toggle="tooltip" title="Remover persona" flat-tooltip>
+            <i class="glyphicon glyphicon-remove"></i>
+          </a>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div class="row">
+  <div class="col-md-5">
+    <label for="nombre">Nombre</label>
+    <input id="nombre" type="text" class="form-control text-capitalize" placeholder="Nombre" data-ng-model="familyMember.names">
+  </div>
+  <div class="col-md-5">
+    <label for="apellido">Apellido</label>
+    <input id="apellido" type="text" class="form-control text-capitalize" placeholder="Apellido" data-ng-model="familyMember.surnames">
+  </div>
+  <div class="col-md-2">
+    <label for="kin">Parentesco</label>
+    <select id="kin" class="form-control" data-ng-model="familyMember.family_groups_types_id">
+      <option data-ng-repeat="k in kinships" value="{{k.id}}">{{k.rol}}</option>
+    </select>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-3">
+    <label for="documentType">Documento</label>
+    <select id="documentType" data-ng-model="familyMember.document_type" class="form-control">
+      <option data-ng-repeat="type in documentTypes" value="{{type.id}}">{{type.name}}</option>
+    </select>
+  </div>
+  <div class="col-md-4">
+    <label for="number">Número</label>
+    <input id="number" type="text" class="form-control" placeholder="Número" data-ng-model="familyMember.document_number" data-toggle="tooltip" title="Número de documento" flat-tooltip>
+  </div>
+  <div class="col-md-5">
+    <label for="Birthdate">Fecha de Nacimiento</label>
+    <p class="input-group">
+      <input id="Birthdate" type="text" class="form-control" is-open="familyMemberBirthdate.status" uib-datepicker-popup="dd/MM/yyyy" data-ng-model="familyMember.birthdate" show-button-bar="false" datepicker-options="dateOptions" popup-placement="bottom-right" alt-input-formats="['d!/M!/yyyy', 'd!-M!-yyyy']" placeholder="Fecha de Nacimiento" data-toggle="tooltip" title="Fecha de nacimiento en formato dd/MM/aaaa" flat-tooltip>
+      <span class="input-group-btn">
+        <button type="button" class="btn btn-default" ng-click="openFamilyMemberBirthdate()"><i class="glyphicon glyphicon-calendar"></i></button>
+      </span>
+    </p>
+  </div>
+</div>
+</div>
+<div class="row">
+  <div class="col-md-4">
+    <label for="town">Localidad</label>
+    <input id="town" type="text" data-ng-model="familyMember.address_town_name" uib-typeahead="curr.name for curr in getTowns($viewValue)" typeahead-min-length="3" class="form-control tt-input text-capitalize" placeholder="Localidad">
+  </div>
+  <div class="col-md-3">
+    <label for="phones">Teléfono</label>
+    <input id="phones" type="text" class="form-control" placeholder="Teléfono" data-ng-model="familyMember.phones">
+  </div>
+  <div class="col-md-3">
+    <label for="complainant_date">Fecha de Querella</label>
+    <p class="input-group">
+      <input id="complainant_date" type="text" data-ng-disabled="!familyMember.complainant" class="form-control" is-open="familyDataDatepicker.status" uib-datepicker-popup="dd/MM/yyyy" data-ng-model="familyMember.complainant_date" show-button-bar="false" datepicker-options="dateOptions" popup-placement="bottom-right" alt-input-formats="['d!/M!/yyyy', 'd!-M!-yyyy']" placeholder="Fecha de Querrella" data-toggle="tooltip" title="Fecha de querella en formato dd/MM/aaaa" flat-tooltip>
+      <span class="input-group-btn">
+        <button type="button" data-ng-disabled="!familyMember.complainant" class="btn btn-default" data-ng-click="openFamilyDataDatepicker()"><i class="glyphicon glyphicon-calendar"></i></button>
+      </span>
+    </p>
+  </div>
+  <div class="col-md-2">
+    <label for="complainant">Querellante</label>
+    <div class="bootstrap-switch-square">
+      <input id="complainant" data-ng-model="familyMember.complainant" data-toggle="switch" name="square-switch" class="switch" type="checkbox" data-on-text="Si" data-off-text="No" ui-switch/>
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-5">
+    <label for="street">Calle</label>
+    <input id="street" type="text" uib-typeahead="s for s in personStreetName()" typeahead-focus-first="false" class="form-control tt-input text-capitalize" placeholder="Calle" data-ng-model="familyMember.address_street" data-toggle="tooltip" title="Nombre de calle del domicilio actual" flat-tooltip>
+  </div>
+  <div class="col-md-3">
+    <label for="number">Número</label>
+    <input id="number" type="text" uib-typeahead="s for s in personStreetNumber()" typeahead-focus-first="false" class="form-control tt-input text-capitalize" placeholder="Número" data-ng-model="familyMember.address_number" data-toggle="tooltip" title="Número de casa/lote" flat-tooltip>
+  </div>
+  <div class="col-md-2">
+    <label for="floor">Piso</label>
+    <input id="floor" type="text" uib-typeahead="s for s in personStreetFloor()" typeahead-focus-first="false" class="form-control tt-input text-capitalize" placeholder="Piso" data-ng-model="familyMember.address_floor" data-toggle="tooltip" title="Número de piso" flat-tooltip>
+  </div>
+  <div class="col-md-2">
+    <label for="dpto">Dpto.</label>
+    <input id="dpto" type="text" uib-typeahead="s for s in personStreetDept()" typeahead-focus-first="false" class="form-control tt-input text-capitalize" placeholder="Dpto." data-ng-model="familyMember.address_dept" data-toggle="tooltip" title="Identificador de departamento" flat-tooltip>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-12">
+    <br>
+    <button class="btn btn-primary pull-right" data-ng-click="addFamilyMember()"> 
+      <i class=" glyphicon glyphicon-plus"></i> Agregar
+    </button>
+  </div>
+</div>

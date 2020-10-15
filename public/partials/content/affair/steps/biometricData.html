@@ -1,0 +1,54 @@
+<div class="row">
+  <div class="col-md-4">
+    <label for="height">Altura</label>
+    <div class="input-group" data-toggle="tooltip" title="Altura aproximada en metros, por ej: 1.72" flat-tooltip>
+      <input id="height" type="number" min="0" step="any" class="form-control" placeholder="Altura" data-ng-model="person.height">
+      <span class="input-group-addon">Mts.</span>
+    </div>
+  </div>
+  <div class="col-md-4">
+    <label for="weight">Peso</label>
+    <div class="input-group" data-toggle="tooltip" title="Peso aproximado en kilogramos, por ej: 68" flat-tooltip>
+      <input id="weight" type="number" min="0" step="any" class="form-control" placeholder="Peso" data-ng-model="person.weight">
+      <span class="input-group-addon">Kgs.</span>
+    </div>
+  </div>
+  <div class="col-md-4">
+    <label for="hair_color">Color de cabello</label>
+    <select id="hair_color" data-ng-model="person.hair_color" class="form-control">
+      <option data-ng-repeat="hairColor in hairColors" value="{{hairColor}}">{{hairColor}}</option>
+    </select>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-4">
+    <label for="contexture">Contextura</label>
+    <select id="contexture" data-ng-model="person.contexture" class="form-control">
+      <option data-ng-repeat="contexture in contextures" value="{{contexture}}">{{contexture}}</option>
+    </select>
+  </div>
+  <div class="col-md-4">
+    <label for="skin_color">Color de tez</label>
+    <select id="skin_color" data-ng-model="person.skin_color" class="form-control">
+      <option data-ng-repeat="skinColor in skinColors" value="{{skinColor}}">{{skinColor}}</option>
+    </select>
+  </div>
+  <div class="col-md-4">
+    <label for="eye_color">Color de ojos</label>
+    <select id="eye_color" data-ng-model="person.eye_color" class="form-control">
+      <option data-ng-repeat="eyeColor in eyeColors" value="{{eyeColor}}">{{eyeColor}}</option>
+    </select>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-12">
+    <label for="clothing">Vestimenta</label>
+    <textarea id="clothing" class="form-control" rows="3" data-ng-model="person.clothing" placeholder="Vestimenta" data-toggle="tooltip" title="Vestimenta al momento del hecho" flat-tooltip></textarea>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-12">
+    <label for="special_peculiarities">Señas particulares</label>
+    <textarea id="special_peculiarities" class="form-control" rows="3" data-ng-model="person.special_peculiarities" placeholder="Señas particulares" data-toggle="tooltip" title="Descripción adicional" flat-tooltip></textarea>
+  </div>
+</div>

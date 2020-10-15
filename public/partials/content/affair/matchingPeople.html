@@ -1,0 +1,91 @@
+<div class="buttons-bar palette-clouds">
+  <button data-ng-click="backToBasicDataForm()" class="btn btn-primary"><i class="glyphicon glyphicon-arrow-left"></i> Volver</button>
+  <a href="" data-ng-click="noneSelected()" class="btn btn-primary">No está en la lista <i class="glyphicon glyphicon-arrow-right"></i></a>
+</div>
+<uib-accordion>
+  <uib-accordion-group is-open="status.open">
+    <uib-accordion-heading>
+      <a class="accordion-title" href="">
+        Filtrar resultados <i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': status.open, 'glyphicon-chevron-right': !status.open}"></i>
+      </a>
+    </uib-accordion-heading>
+    <div class="row">
+      <div class="col-md-4">
+        <label for="surnames">Apellidos</label>
+        <input id="surnames" class="form-control text-capitalize" placeholder="Apellidos" data-ng-model="filters.surnames" on-ok="findAndReset()">
+      </div>
+      <div class="col-md-4">
+        <label for="names">Nombres</label>
+        <input id="names" class="form-control text-capitalize" placeholder="Nombres" data-ng-model="filters.names" on-ok="findAndReset()">
+      </div>
+      <div class="col-md-4">
+        <label for="document">Documento</label>
+        <input id="document" class="form-control" placeholder="Documento" data-ng-model="filters.documentNumber" on-ok="findAndReset()">
+      </div>
+      <div class="col-md-4">
+        <label for="birthdate">Fecha de nacimiento</label>
+        <div class="row">
+          <div class="col-md-3">
+            <input id="birthdateDay" class="form-control" placeholder="dd" data-ng-model="filters.personBirthdateDay" on-ok="findAndReset()" data-toggle="tooltip" title="Día" flat-tooltip>
+          </div>
+          <div class="col-md-3">
+            <input id="birthdateMonth" class="form-control" placeholder="MM" data-ng-model="filters.personBirthdateMonth" on-ok="findAndReset()" data-toggle="tooltip" title="Mes" flat-tooltip>
+          </div>
+          <div class="col-md-6">
+            <input id="birthdateYear" class="form-control" placeholder="aaaa" data-ng-model="filters.personBirthdateYear" on-ok="findAndReset()" data-toggle="tooltip" title="Año" flat-tooltip>
+          </div>
+        </div>
+      </div>
+    </div>
+  </uib-accordion-group>
+</uib-accordion>
+<div class="persons-list-match">
+  <div class="row"  data-ng-repeat="p in people | orderBy:'weight' track by $index">
+    <div id="box" class="col-md-12 {{calculateClass(p)}}">
+      <div class="media">
+        <div class="media-left">
+          <img class="media-object" data-ng-src="{{getPhoto(p)}}" alt="Foto">
+        </div>
+        <div class="media-body">
+          <div class="row row-title">
+            <div class="col-md-12">
+              <h4 class="media-heading">
+                <span class="pull-left">
+                  {{p.surnames}} {{p.names}} <small>({{p.weight}}% de coincidencia)</small>
+                </span>
+                <span class="pull-right">
+                  <a type="button" class="btn btn-primary btn-sm" data-ng-click="selected($index)">
+                    Elegir <i class="glyphicon glyphicon-share-alt"></i>
+                  </a>
+                </span>
+              </h4>
+            </div>
+          </div>
+          <hr>
+          <div class="row">
+            <div class="col-md-5 col-md-offset-1" data-ng-show="p.document_number">
+              <strong>Documento</strong>{{p.document_type ? p.document_type + ':' : ''}} {{p.document_number}}
+            </div>
+            <div class="col-md-5 col-md-offset-1" data-ng-show="p.birthdate">
+              <strong>Fecha de nacimiento</strong>{{p.birthdate | date:'dd-MM-yyyy'}}
+            </div>
+            <div class="col-md-5 col-md-offset-1" data-ng-show="p.gender">
+              <strong>Genero</strong>{{p.gender}}
+            </div>
+            <div class="col-md-5 col-md-offset-1" data-ng-show="p.nationality">
+              <strong>Nacionalidad</strong>{{p.nationality}}
+            </div>
+          </div>
+          <div class="row" data-ng-show="getAddress(p)">
+            <div class="col-md-11 col-md-offset-1">
+              <strong>Domicilio</strong>{{getAddress(p)}}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div data-ng-show="persons.length" class="pagination-inverse">
+  <uib-pagination total-items="total" data-ng-model="page" items-per-page="pageSize" previous-text="Anterior" next-text="Siguiente" max-size="10" data-ng-change="find()"/>
+</div>

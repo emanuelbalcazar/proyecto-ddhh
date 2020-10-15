@@ -1,0 +1,11 @@
+FACTOR_NAME,FACTOR_DISCOUNT,PARAMETER_FIELD,PARAMETER_CLASS
+F1,500,document_number,WeightFactorParameterSimple
+F3,225,surnames,WeightFactorParameterSimple
+F2,200,birthdate,WeightFactorParameterDateYear
+F4,175,names,WeightFactorParameterSimple
+F5,150,surnames,WeightFactorParameterLevenshtein
+F6,125,birthdate,WeightFactorParameterDateMonth
+F7,100,names,WeightFactorParameterLevenshtein
+F8,75,surnames,WeightFactorParameterSoundex
+F9,50,names,WeightFactorParameterSoundex
+F10,25,birthdate,WeightFactorParameterDateDay

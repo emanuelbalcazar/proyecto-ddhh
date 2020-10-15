@@ -1,0 +1,38 @@
+.header {
+	background-color: #ECF0F1;
+}
+
+.header>.container>.row {
+	padding: 20px 0;
+}
+
+.header .login-form {
+	padding: 0;
+}
+
+.logo {
+	font: 900 90px/100px "Helvetica Neue", Helvetica, Arial, sans-serif;
+	letter-spacing: -2px;
+	margin: 0;
+}
+
+.logo small {
+	color: rgba(52, 73, 94, 0.3);
+	display: block;
+	font-size: 22px;
+	font-weight: 700;
+	letter-spacing: 0;
+	padding-top: 5px;
+}
+
+.logo-img {
+	background: url("/img/logo.png") no-repeat scroll center 0 / 120px 120px;
+	margin: 7px 40px 0 0;
+	height: 120px;
+	width: 120px;
+	float: left;
+}
+
+.headspace {
+	padding-bottom: 50px;
+}

@@ -1,0 +1,36 @@
+<div class="buttons-bar palette-clouds">
+  <button data-ng-click="backToList()" class="btn btn-primary"><i class="glyphicon glyphicon-arrow-left"></i> Volver</button>
+  <separator></separator>
+  <a href="" data-ng-click="prev(affairTabs)" class="btn btn-primary"><i class="glyphicon glyphicon-arrow-left"></i> Atras</a>
+  <a href="" data-ng-click="next(affairTabs)" class="btn btn-primary">Siguiente <i class="glyphicon glyphicon-arrow-right"></i></a>
+  <separator></separator>
+  <button type="Submit" href="" data-ng-click="save()" class="btn btn-info"><i class="fa fa-floppy-o"></i> Finalizar</button>
+  <separator></separator>
+  <a href="" class="text-warning" data-toggle="tooltip" title="Los datos no han sido guardados aún" flat-tooltip><i class="fa fa-exclamation-triangle"></i> Datos pendientes de guardado</a>
+</div>
+<ul id="breadcrumb">
+  <li data-ng-repeat="t in affairTabs" data-ng-class="{'visited': t.visited}">
+    <a data-ng-class="{'active': t.active}" data-ng-click="selectTab($index, affairTabs)" href="">
+      {{t.name}}
+    </a>
+  </li>
+</ul>
+<div class="alert alert-danger save-errors" data-ng-show="fieldErrors">
+  <ul>
+    <li data-ng-repeat="(key, val) in fieldErrors">
+      <span class="text-capitalize">{{key}}</span>
+      <ul>
+        <li data-ng-repeat="arrItem in val">
+          {{arrItem}}
+        </li>
+      </ul>
+    </li>
+  </ul>
+</div>
+<div class="tab-content">
+  <div data-ng-repeat="t in affairTabs" role="tabpanel" class="tab-pane" data-ng-class="{'active': t.active}">
+    <div class="container-fluid">
+      <div data-ng-include src="t.src"></div>
+    </div>
+  </div>
+</div>

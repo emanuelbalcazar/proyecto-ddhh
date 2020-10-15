@@ -1,0 +1,12 @@
+table {
+	background-color: #FFFFFF;
+}
+
+table>tbody>tr>.btn-group {
+	width: 100%;
+}
+
+table>tbody>tr>.btn-group>a {
+	width: 33%;
+}
+

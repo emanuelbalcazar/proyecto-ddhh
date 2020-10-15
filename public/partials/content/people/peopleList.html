@@ -1,0 +1,114 @@
+<div class="buttons-bar palette-clouds">
+  <default-buttons></default-buttons>
+  <a href="#/nuevo_caso" class="btn btn-primary"><i class=" fa fa-user-plus"></i> Nuevo caso</a>
+</div>
+<uib-accordion>
+  <uib-accordion-group is-open="status.open">
+    <uib-accordion-heading>
+      <a class="accordion-title" href="">
+        Filtrar resultados <i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': status.open, 'glyphicon-chevron-right': !status.open}"></i>
+      </a>
+    </uib-accordion-heading>
+    <div class="row">
+      <div class="col-md-4">
+        <label for="surnames">Apellidos</label>
+        <input id="surnames" class="form-control text-capitalize" placeholder="Apellidos" data-ng-model="filters.surnames" on-ok="findAndReset()">
+      </div>
+      <div class="col-md-4">
+        <label for="names">Nombres</label>
+        <input id="names" class="form-control text-capitalize" placeholder="Nombres" data-ng-model="filters.names" on-ok="findAndReset()">
+      </div>
+      <div class="col-md-4">
+        <label for="document">Documento</label>
+        <input id="document" class="form-control" placeholder="Documento" data-ng-model="filters.documentNumber" on-ok="findAndReset()">
+      </div>
+      <div class="col-md-4">
+        <label for="birthdate">Fecha de nacimiento</label>
+        <div class="row">
+          <div class="col-md-3" data-ng-class="{'has-error': birthdateDayValidator()}">
+            <input id="birthdateDay" class="form-control" placeholder="dd" data-ng-model="filters.personBirthdateDay" on-ok="findAndReset()" data-toggle="tooltip" title="Día" flat-tooltip>
+          </div>
+          <div class="col-md-3" data-ng-class="{'has-error': birthdateMonthValidator()}">
+            <input id="birthdateMonth" class="form-control" placeholder="MM" data-ng-model="filters.personBirthdateMonth" on-ok="findAndReset()" data-toggle="tooltip" title="Mes" flat-tooltip>
+          </div>
+          <div class="col-md-6" data-ng-class="{'has-error': birthdateYearValidator() || wrongYear}">
+            <input id="birthdateYear" class="form-control" placeholder="aaaa" data-ng-model="filters.personBirthdateYear" data-ng-blur="birthdateYearValidatorOnBlur()" on-ok="findAndReset()" data-toggle="tooltip" title="Año" flat-tooltip>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <label for="gender">Género</label>
+        <select id="gender" data-ng-model="filters.gender" class="form-control" on-ok="findAndReset()">
+          <option data-ng-repeat="gender in genders" value="{{gender}}">{{gender}}</option>
+        </select>
+      </div>
+      <div class="col-md-4">
+        <label for="ageSelectOptions">Rango etareo</label><br>
+        <multiselect id="ageSelectOptions"
+            ng-model="filters.range"
+            options="c.name for c in ageSelectOptions"
+            data-multiple="true"
+            data-compare-by="value"
+            scroll-after-rows="5"
+            filter-after-rows="100"
+            tabindex="-1">
+        </multiselect>
+      </div>
+    </div>
+  </uib-accordion-group>
+</uib-accordion>
+<div class="persons-list">
+  <div class="row" data-ng-repeat="p in persons track by $index">
+    <div id="box" class="col-md-12">
+      <div class="media">
+        <div class="media-left">
+          <img class="media-object" data-ng-src="{{getPhoto(p)}}" alt="Foto">
+          <a type="button" name="button" data-ng-href="#/personas/{{p.id}}/alertas" class="btn btn-sm btn-block alerts-button" data-ng-class="classFromCriticality(p)"  data-toggle="tooltip" title="Haga click para resolver alertas" flat-tooltip>
+            <i class="fa fa-exclamation-triangle" aria-hidden="true"></i>
+            Datos
+            <span class="badge">{{personAlerts(p)}}</span>
+          </a>
+        </div>
+        <div class="media-body">
+          <div class="row row-title">
+            <div class="col-md-12">
+              <h4 class="media-heading">
+                <span class="pull-left">
+                  {{p.surnames}} {{p.names}}
+                </span>
+                <span class="pull-right">
+                  <a type="button" data-toggle="tooltip" title="Opciones" flat-tooltip>
+                    <i class="glyphicon glyphicon-option-vertical"></i>
+                  </a>
+                </span>
+              </h4>
+            </div>
+          </div>
+          <hr>
+          <div class="row">
+            <div class="col-md-5 col-md-offset-1" data-ng-show="p.document_number">
+              <strong>Documento</strong>{{p.document_type ? p.document_type + ':' : ''}} {{p.document_number}}
+            </div>
+            <div class="col-md-5 col-md-offset-1" data-ng-show="p.birthdate">
+              <strong>Fecha de nacimiento</strong>{{p.birthdate | date:'dd-MM-yyyy'}}
+            </div>
+            <div class="col-md-5 col-md-offset-1" data-ng-show="p.gender">
+              <strong>Genero</strong>{{p.gender}}
+            </div>
+            <div class="col-md-5 col-md-offset-1" data-ng-show="p.nationality">
+              <strong>Nacionalidad</strong>{{p.nationality}}
+            </div>
+          </div>
+          <div class="row" data-ng-show="getAddress(p)">
+            <div class="col-md-11 col-md-offset-1">
+              <strong>Domicilio</strong>{{getAddress(p)}}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div data-ng-show="persons.length" class="pagination-inverse">
+  <uib-pagination total-items="total" data-ng-model="page" items-per-page="pageSize" previous-text="Anterior" next-text="Siguiente" max-size="10" data-ng-change="find()"/>
+</div>

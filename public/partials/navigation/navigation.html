@@ -1,0 +1,16 @@
+<div class="todo">
+	<div class="todo-search">
+		<input type="search" placeholder="Buscar" value="" class="todo-search-field">
+	</div>
+	<ul data-ng-controller="NavCtrl">
+		<li data-ng-repeat="r in routes" role="presentation" data-ng-class="{'todo-done': isCurrent(r)}">
+			<a data-ng-href="#{{r.url}}">
+				<div class="todo-icon fa {{r.icon}}"></div>
+				<div class="todo-content">
+					<h4 class="todo-name">{{r.name}}</h4>
+					{{r.description}}
+				</div>
+			</a>
+		</li>
+	</ul>
+</div>

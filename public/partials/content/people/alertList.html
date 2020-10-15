@@ -1,0 +1,38 @@
+<div class="buttons-bar palette-clouds">
+  <default-buttons></default-buttons>
+  <a href="#/nuevo_caso" class="btn btn-primary"><i class=" fa fa-user-plus"></i> Nuevo caso</a>
+</div>
+<nav class="navbar navbar-inverse" role="navigation">
+  <div class="navbar-header">
+    <div id="box" class="col-md-12 {{calculateClass(a)}}">
+      <div class="media">
+        <div class="media-body">
+          <div class="row row-title">
+            <div class="col-md-12">
+              <h4 class="media-heading text-center">
+                <span>
+                  {{names.surnames}} {{names.names}}
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</nav>
+<div class="persons-list alerts">
+  <div class="row" data-ng-repeat="a in alerts track by $index">
+    <span data-ng-switch="a.type">
+      <div data-ng-switch-when="Nuevo Dato">
+        <div data-ng-include="'partials/content/people/alertTypes/newData.html'"></div>
+      </div>
+      <div data-ng-switch-default>
+        <div data-ng-include="'partials/content/people/alertTypes/insufficientData.html'"></div>
+      </div>
+    </span>
+  </div>
+</div>
+<div data-ng-show="alerts.length" class="pagination-inverse">
+  <uib-pagination total-items="total" data-ng-model="page" items-per-page="pageSize" previous-text="Anterior" next-text="Siguiente" max-size="10" data-ng-change="find()"/>
+</div>

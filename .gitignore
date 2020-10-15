@@ -1,0 +1,10 @@
+/public/assets/*
+/public/fonts/*
+/bootstrap/compiled.php
+/resources/bower
+/node_modules
+/storage
+/vendor
+composer.phar
+composer.lock
+.DS_Store

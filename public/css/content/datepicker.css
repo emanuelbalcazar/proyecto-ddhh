@@ -1,0 +1,146 @@
+.uib-datepicker {
+  border-color: #E2E8EC;
+  border-style: solid;
+  border-width: 1px;
+}
+
+/* DIA */
+
+.uib-daypicker button {
+  border-radius: 0;
+}
+
+.uib-daypicker thead,
+.uib-daypicker thead button {
+  background-color: #34495E;
+  color: #FFF;
+}
+
+.uib-daypicker thead button:hover,
+.uib-daypicker thead button:focus {
+  background-color: #2C3E50
+}
+
+.uib-daypicker tbody,
+.uib-daypicker tbody button {
+  background-color: #FFF;
+  color: #2C3E50;
+}
+
+.uib-daypicker tbody button:hover,
+.uib-daypicker tbody button:focus {
+  background-color: #1ABC9C;
+  color: #FFF;
+}
+
+.uib-daypicker tbody button:hover .text-info,
+.uib-daypicker tbody button:focus .text-info {
+  color: #FFF;
+}
+
+.uib-daypicker tbody button.active,
+.uib-daypicker tbody button:active,
+.uib-daypicker tbody button.btn-info {
+  background-color: #16A085;
+  color: #FFF;
+}
+
+.uib-daypicker tbody button.active .text-info,
+.uib-daypicker tbody button:active .text-info,
+.uib-daypicker tbody button.btn-info .text-info {
+  color: #FFF;
+}
+
+/* MES */
+
+.uib-monthpicker button {
+  border-radius: 0;
+}
+
+.uib-monthpicker thead,
+.uib-monthpicker thead button {
+  background-color: #34495E;
+  color: #FFF;
+}
+
+.uib-monthpicker thead button:hover,
+.uib-monthpicker thead button:focus {
+  background-color: #2C3E50
+}
+
+.uib-monthpicker tbody,
+.uib-monthpicker tbody button {
+  background-color: #FFF;
+  color: #2C3E50;
+}
+
+.uib-monthpicker tbody button:hover,
+.uib-monthpicker tbody button:focus {
+  background-color: #1ABC9C;
+  color: #FFF;
+}
+
+.uib-monthpicker tbody button:hover .text-info,
+.uib-monthpicker tbody button:focus .text-info {
+  color: #FFF;
+}
+
+.uib-monthpicker tbody button.active,
+.uib-monthpicker tbody button:active,
+.uib-monthpicker tbody button.btn-info {
+  background-color: #16A085;
+  color: #FFF;
+}
+
+.uib-monthpicker tbody button.active .text-info,
+.uib-monthpicker tbody button:active .text-info,
+.uib-monthpicker tbody button.btn-info .text-info {
+  color: #FFF;
+}
+
+/* AÑO */
+
+.uib-yearpicker button {
+  border-radius: 0;
+}
+
+.uib-yearpicker thead,
+.uib-yearpicker thead button {
+  background-color: #34495E;
+  color: #FFF;
+}
+
+.uib-yearpicker thead button:hover,
+.uib-yearpicker thead button:focus {
+  background-color: #2C3E50
+}
+
+.uib-yearpicker tbody,
+.uib-yearpicker tbody button {
+  background-color: #FFF;
+  color: #2C3E50;
+}
+
+.uib-yearpicker tbody button:hover,
+.uib-yearpicker tbody button:focus {
+  background-color: #1ABC9C;
+  color: #FFF;
+}
+
+.uib-yearpicker tbody button:hover .text-info,
+.uib-yearpicker tbody button:focus .text-info {
+  color: #FFF;
+}
+
+.uib-yearpicker tbody button.active,
+.uib-yearpicker tbody button:active,
+.uib-yearpicker tbody button.btn-info {
+  background-color: #16A085;
+  color: #FFF;
+}
+
+.uib-yearpicker tbody button.active .text-info,
+.uib-yearpicker tbody button:active .text-info,
+.uib-yearpicker tbody button.btn-info .text-info {
+  color: #FFF;
+}

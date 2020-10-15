@@ -1,0 +1,41 @@
+<div class="header">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-8">
+				<div class="logo-img"></div>
+				<h1 class="logo">
+					DDHH <small>Gestión y búsqueda de Personas</small>
+				</h1>
+			</div>
+
+			<div class="col-md-4" data-ng-controller="LoginCtrl">
+
+				<div class="login-form" data-ng-hide="isUserLogedIn()">
+					<div class="form-group">
+						<input id="login-name" class="form-control login-field" type="text" placeholder="Nombre de usuario" data-ng-model="email" data-ng-keyup="hitEnter($event)">
+						<label class="login-field-icon fui-user" for="login-name"></label>
+					</div>
+					<div class="form-group">
+						<input id="login-pass" class="form-control login-field" type="password" placeholder="Contraseña" data-ng-model="password" data-ng-keyup="hitEnter($event)">
+						<label class="login-field-icon fui-lock" for="login-pass"></label>
+					</div>
+					<a class="btn btn-primary btn-lg btn-block" data-ng-click="doLogin()">Iniciar sesión</a>
+					<a class="login-link" href="#">Olvidaste tu contraseña?</a>
+				</div>
+
+				<div class="row" data-ng-show="isUserLogedIn()">
+					<div class="col-md-3 avatar-div">
+						<img src="img/avatar/avatar.png" class="img-responsive" alt="">
+					</div>
+					<div class="col-md-9">
+						<h3 class="capital">{{session.currentUser.name}}</h3>
+						<h5>{{getRole()}}</h5>
+						<a class="btn btn-primary btn-lg btn-block" data-ng-click="logout()">Cerrar sesión</a>
+					</div>
+				</div>
+
+			</div>
+		</div>
+	</div>
+</div>
+<div class="headspace"></div>

@@ -1,0 +1,52 @@
+<div class="container" data-ng-controller="HomeCtrl">
+	<div class="row">
+		<div class="col-md-6 registration">
+			<div class="row">
+
+				<div class="col-md-10">
+					<h1>Creá una cuenta</h1>
+					<h6>Gratis y disfrutá la gilada.</h6>
+					<br>
+				</div>
+
+				<div class="col-md-10">
+					<div class="form-group">
+						<input class="form-control" type="text" placeholder="Nombre y apellido" value="">
+					</div>
+				</div>
+				<div class="col-md-10">
+					<div class="form-group">
+						<input class="form-control" type="text" placeholder="Correo electrónico" value="">
+					</div>
+				</div>
+				<div class="col-md-10">
+					<div class="form-group">
+						<input class="form-control" type="text" placeholder="Confirmar correo electrónico" value="">
+					</div>
+				</div>
+				<div class="col-md-10">
+					<div class="form-group">
+						<input class="form-control" type="password" placeholder="Contraseña" value="">
+					</div>
+				</div>
+				<div class="col-md-10">
+					<div class="form-group">
+						<a href="#" class="btn btn-primary btn-lg btn-block">Crear una cuenta</a>
+					</div>
+				</div>
+
+			</div>
+		</div>
+		<div class="col-md-6">
+			
+			<h5>Aca va un poco de verso, no muy largo ni muy corto. Maomeno 2 renglones.</h5>
+		
+			<carousel interval="interval">
+				<slide data-ng-repeat="slide in slides" active="slide.active">
+					<img data-ng-src="{{slide.image}}" alt="">
+					<div class="carousel-caption"></div>
+				</slide>
+			</carousel>
+		</div>
+	</div>
+</div>
